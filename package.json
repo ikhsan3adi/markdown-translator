@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "ncc build ./index.js -o dist --source-map",
-    "build:commit": "npm run build && git add . && git commit"
+    "build:commit": "npm run build && git add . && git commit",
+    "postinstall": "npm run build"
   },
   "keywords": [
     "readme",
