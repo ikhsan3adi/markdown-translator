@@ -21,6 +21,8 @@ const mainDir = ".";
 const lang = core.getInput("LANG") || "en";
 const mdFiles = core.getInput("FILES").split(/\r|\n/);
 
+console.log(core.getInput("FILES"), mdFiles);
+
 async function translate(files) {
   for (const file of files) {
     const readme = readFileSync(join(mainDir, file), { encoding: "utf8" });
