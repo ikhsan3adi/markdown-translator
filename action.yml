@@ -6,7 +6,10 @@ inputs:
   LANG:
     description: 'The Language you want to translate to'
     required: false
-    default: 'zh-CN'
+    default: 'en'
+  FILES:
+    description: 'Comma-separated or newline-separated list of the markdown files you want to translate to'
+    required: true
 
 runs:
   using: 'node12'
