@@ -15,7 +15,7 @@
 
 ## 設定
 
-1.  **新增工作流程文件**到您的專案（例如`.github/workflows/readme.yml`):
+**新增工作流程文件**到您的專案（例如`.github/workflows/readme.yml`):
 
 ```yaml
 name: Translate README
@@ -55,6 +55,10 @@ jobs:
             OTHER-README.md
             ...
 ```
+
+## 叉
+
+：警告：不要忘記運行`npm run build`在提交之前
 
 ## 配置
 
