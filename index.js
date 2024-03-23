@@ -40,7 +40,10 @@ async function translate(files) {
       return (await $(text, { to: lang })).text;
     });
 
-    await writeToFile(file, readmeAST, translatedText);
+    const filename = file.split(".")
+    filename.pop();
+
+    await writeToFile(filename, readmeAST, translatedText);
   }
 }
 
