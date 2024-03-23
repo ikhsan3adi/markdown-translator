@@ -22,8 +22,5 @@
     "tunnel": "0.0.6",
     "unified": "^9.1.0",
     "unist-util-visit": "^2.0.3"
-  },
-  "devDependencies": {
-    "@vercel/ncc": "^0.23.0"
   }
 }

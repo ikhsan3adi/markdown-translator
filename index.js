@@ -72,7 +72,7 @@ async function commitChanges() {
 
 async function translateReadme() {
   try {
-    await translate(['README.md']);
+    await translate(mdFiles);
     await commitChanges();
     console.log("Done");
   } catch (error) {
