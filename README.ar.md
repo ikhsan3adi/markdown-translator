@@ -9,7 +9,7 @@
 -   [فرنسي](README.fr.md)
 -   [عربى](README.ar.md)
 
-**GitHub Action to translate READMEs to any language**
+**إجراء GitHub لترجمة الملفات التمهيدية إلى أي لغة**
 
 هذا هو إجراء GitHub الذي يقوم تلقائيًا بترجمة الملف التمهيدي في الريبو الخاص بك إلى لغة محددة.
 
@@ -66,10 +66,10 @@ jobs:
 
 يمكنك تكوين الإجراء بشكل أكبر باستخدام الخيارات التالية:
 
--   `LANG`: اللغة التي تريد ترجمة الملف التمهيدي إليها. الافتراضي هو الصينية المبسطة. (أنا غاني) يمكن العثور على اللغات المدعومة أدناه.
-    (تقصير:`zh-CH`) (مطلوب:`false`)
+-   `LANG`: The language you want to translate your readme to. The default is Simplified Chinese. (I'm a Ghanaian) The supported languages can be found below.
+    (default: `zh-CH`) (مطلوب:`false`)
 
--   `FILES`: Newline-separated list of the markdown files you want to translate to. (default: `[README.md]`) (مطلوب:`false`)
+-   `FILES`: قائمة مفصولة بسطر جديد لملفات تخفيض السعر التي تريد الترجمة إليها. (تقصير:`[README.md]`) (مطلوب:`false`)
 
 ## اللغات المدعومة
 
