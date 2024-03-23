@@ -15,7 +15,7 @@
 
 ## 设置
 
-1.  **添加工作流程文件**到您的项目（例如`.github/workflows/readme.yml`):
+**添加工作流程文件**到您的项目（例如`.github/workflows/readme.yml`):
 
 ```yaml
 name: Translate README
@@ -56,6 +56,10 @@ jobs:
             ...
 ```
 
+## 叉
+
+：警告：不要忘记运行`npm run build`在提交之前
+
 ## 配置
 
 ### 选项
@@ -69,7 +73,7 @@ jobs:
 
 ## 支持的语言
 
-可以在此处找到支持的语言[HTTPS://cloud.Google.com/translate/docs/languages](https://cloud.google.com/translate/docs/languages)
+可以在此处找到支持的语言<https://cloud.google.com/translate/docs/languages>
 
 ### 发展
 
