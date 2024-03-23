@@ -4,9 +4,9 @@
 
 -   [英語](README.md)
 -   [簡體中文](README.zh-CN.md)
--   [繁体中文](README.zh-TW.md)
+-   [繁體中文](README.zh-TW.md)
 -   [印地語](README.hi.md)
--   [Française](README.fr.md)
+-   [法語](README.fr.md)
 -   [阿拉伯](README.ar.md)
 
 **GitHub Action 將 README 翻譯成任何語言**
@@ -66,8 +66,8 @@ jobs:
 
 您可以使用以下選項進一步配置操作：
 
--   `LANG`：您要將自述文件翻譯成的語言。預設為簡體中文。 （我是加納人）支持的語言可以在下面找到。
-    (預設:`zh-CH`） （必需的：`false`)
+-   `LANG`：您要將自述文件翻譯成的語言。預設為簡體中文。可以在下面找到支援的語言。
+    (預設:`zh-CN`） （必需的：`false`)
 
 -   `FILES`：要翻譯成的 Markdown 檔案的換行分隔清單。 (預設:`[README.md]`） （必需的：`false`)
 
