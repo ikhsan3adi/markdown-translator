@@ -3,7 +3,7 @@
 ## रीडमी अनुवाद
 
 -   [अंग्रेज़ी](README.md)
--   [简体中文](README.zh-CN.md)
+-   [सरलीकृत चीनी](README.zh-CN.md)
 -   [परंपरागत चीनी](README.zh-TW.md)
 -   [हिंदी](README.hi.md)
 -   [फ़्रेंच](README.fr.md)
