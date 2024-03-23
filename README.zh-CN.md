@@ -58,7 +58,7 @@ jobs:
 
 ## 叉
 
-：警告：不要忘记运行`npm run build` before committing
+：警告：不要忘记运行`npm run build`在提交之前
 
 ## 配置
 
@@ -66,14 +66,14 @@ jobs:
 
 您可以使用以下选项进一步配置操作：
 
--   `LANG`：您要将自述文件翻译成的语言。默认为简体中文。 （我是加纳人）支持的语言可以在下面找到。
-    （默认：`zh-CH`） （必需的：`false`)
+-   `LANG`：您要将自述文件翻译成的语言。默认为简体中文。可以在下面找到支持的语言。
+    （默认：`zh-CN`） （必需的：`false`)
 
 -   `FILES`：要翻译成的 Markdown 文件的换行分隔列表。 （默认：`[README.md]`） （必需的：`false`)
 
 ## 支持的语言
 
-Languages supported can be found here <https://cloud.google.com/translate/docs/languages>
+可以在此处找到支持的语言[HTTPS://cloud.Google.com/translate/docs/languages](https://cloud.google.com/translate/docs/languages)
 
 ### 发展
 
