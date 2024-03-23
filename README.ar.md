@@ -73,7 +73,7 @@ jobs:
 
 ## اللغات المدعومة
 
-اللغات المدعومة يمكن العثور عليها هنا[هتبص://كلود.جوجل.كوم/ترانسلت/دكس/لانججص](https://cloud.google.com/translate/docs/languages)
+اللغات المدعومة يمكن العثور عليها هنا<https://cloud.google.com/translate/docs/languages>
 
 ### تطوير
 
