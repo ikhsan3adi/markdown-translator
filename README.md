@@ -65,8 +65,8 @@ jobs:
 
 You can configure the action further with the following options:
 
-- `LANG`: The language you want to translate your readme to. The default is Simplified Chinese. (I'm a Ghanaian) The supported languages can be found below.
-  (default: `zh-CH`) (required: `false`)
+- `LANG`: The language you want to translate your readme to. The default is Simplified Chinese. The supported languages can be found below.
+  (default: `zh-CN`) (required: `false`)
 
 - `FILES`: Newline-separated list of the markdown files you want to translate to. (default: `[README.md]`) (required: `false`)
 
