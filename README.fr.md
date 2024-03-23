@@ -1,4 +1,4 @@
-# Translate Multiple Markdown Action
+# Traduire plusieurs actions de démarque
 
 ## Traduction du fichier README
 
@@ -15,7 +15,7 @@ Il s'agit d'une action GitHub qui traduit automatiquement le fichier Lisez-moi d
 
 ## Installation
 
-1.  **Ajouter un fichier de workflow**à votre projet (par ex.`.github/workflows/readme.yml`):
+**Ajouter un fichier de workflow**à votre projet (par ex.`.github/workflows/readme.yml`):
 
 ```yaml
 name: Translate README
@@ -56,11 +56,15 @@ jobs:
             ...
 ```
 
+## Fourchette
+
+:avertissement : n'oubliez pas de courir`npm run build`avant de s'engager
+
 ## Configuration
 
 ### Possibilités
 
-Vous pouvez configurer davantage l'action avec les options suivantes :
+You can configure the action further with the following options:
 
 -   `LANG`: La langue dans laquelle vous souhaitez traduire votre fichier Lisez-moi. La valeur par défaut est le chinois simplifié. (Je suis ghanéen) Les langues prises en charge se trouvent ci-dessous.
     (défaut:`zh-CH`) (requis:`false`)
