@@ -1,12 +1,12 @@
-const { readFileSync, writeFileSync, readdirSync } = require("fs");
-const { join } = require("path");
-const core = require("@actions/core");
-const $ = require("@k3rn31p4nic/google-translate-api");
-const unified = require("unified");
-const parse = require("remark-parse");
-const stringify = require("remark-stringify");
-const visit = require("unist-util-visit");
-const simpleGit = require("simple-git");
+import { getInput } from "@actions/core";
+import $ from "@tomsun28/google-translate-api";
+import { readFileSync, writeFileSync } from "fs";
+import { join } from "path";
+import parse from "remark-parse";
+import stringify from "remark-stringify";
+import simpleGit from "simple-git";
+import unified from "unified";
+import visit from "unist-util-visit";
 const git = simpleGit();
 
 const toAst = (markdown) => {
@@ -18,10 +18,8 @@ const toMarkdown = (ast) => {
 };
 
 const mainDir = ".";
-const lang = core.getInput("LANG") || "en";
-const mdFiles = core.getInput("FILES").split(/\r|\n/);
-
-console.log(core.getInput("FILES"), mdFiles);
+const lang = getInput("LANG") || "en";
+const mdFiles = getInput("FILES").split(/\r|\n/);
 
 async function translate(files) {
   for (const file of files) {
@@ -74,7 +72,7 @@ async function commitChanges() {
 
 async function translateReadme() {
   try {
-    await translate(mdFiles);
+    await translate(['README.md']);
     await commitChanges();
     console.log("Done");
   } catch (error) {
