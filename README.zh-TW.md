@@ -4,9 +4,9 @@
 
 -   [英語](README.md)
 -   [簡體中文](README.zh-CN.md)
--   [繁體中文](README.zh-TW.md)
+-   [繁体中文](README.zh-TW.md)
 -   [印地語](README.hi.md)
--   [法語](README.fr.md)
+-   [Française](README.fr.md)
 -   [阿拉伯](README.ar.md)
 
 **GitHub Action 將 README 翻譯成任何語言**
@@ -36,7 +36,7 @@ jobs:
           node-version: 20.x
       # ISO Langusge Codes: https://cloud.google.com/translate/docs/languages
       - name: Adding README - Chinese Simplified
-        uses: ikhsan3adi/translate-multiple-markdown@master
+        uses: ikhsan3adi/translate-multiple-markdown@v1
         with:
           LANG: zh-CN
           FILES: |-
@@ -47,7 +47,7 @@ jobs:
             /very/deep/sub/directories/BAR.md
 
       - name: Adding README - Chinese Traditional
-        uses: ikhsan3adi/translate-multiple-markdown@master
+        uses: ikhsan3adi/translate-multiple-markdown@v1
         with:
           LANG: zh-TW
           FILES: |-
@@ -58,11 +58,11 @@ jobs:
 
 ## 叉
 
-：警告：不要忘記運行`npm run build` before committing
+：警告：不要忘記運行`npm run build`在提交之前
 
 ## 配置
 
-### Options
+### 選項
 
 您可以使用以下選項進一步配置操作：
 
