@@ -58,13 +58,13 @@ jobs:
 
 ## Fourchette
 
-:avertissement : n'oubliez pas de courir`npm run build`avant de s'engager
+:warning: Don't forget to run `npm run build`avant de s'engager
 
 ## Configuration
 
 ### Possibilités
 
-You can configure the action further with the following options:
+Vous pouvez configurer davantage l'action avec les options suivantes :
 
 -   `LANG`: La langue dans laquelle vous souhaitez traduire votre fichier Lisez-moi. La valeur par défaut est le chinois simplifié. (Je suis ghanéen) Les langues prises en charge se trouvent ci-dessous.
     (défaut:`zh-CH`) (requis:`false`)
