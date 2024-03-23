@@ -36,7 +36,7 @@ jobs:
           node-version: 20.x
       # ISO Langusge Codes: https://cloud.google.com/translate/docs/languages
       - name: Adding README - Chinese Simplified
-        uses: ikhsan3adi/translate-multiple-markdown@master
+        uses: ikhsan3adi/translate-multiple-markdown@v1
         with:
           LANG: zh-CN
           FILES: |-
@@ -47,7 +47,7 @@ jobs:
             /very/deep/sub/directories/BAR.md
 
       - name: Adding README - Chinese Traditional
-        uses: ikhsan3adi/translate-multiple-markdown@master
+        uses: ikhsan3adi/translate-multiple-markdown@v1
         with:
           LANG: zh-TW
           FILES: |-
@@ -66,8 +66,8 @@ jobs:
 
 يمكنك تكوين الإجراء بشكل أكبر باستخدام الخيارات التالية:
 
--   `LANG`: The language you want to translate your readme to. The default is Simplified Chinese. (I'm a Ghanaian) The supported languages can be found below.
-    (default: `zh-CH`) (مطلوب:`false`)
+-   `LANG`: اللغة التي تريد ترجمة الملف التمهيدي إليها. الافتراضي هو الصينية المبسطة. (أنا غاني) يمكن العثور على اللغات المدعومة أدناه.
+    (تقصير:`zh-CH`) (مطلوب:`false`)
 
 -   `FILES`: قائمة مفصولة بسطر جديد لملفات تخفيض السعر التي تريد الترجمة إليها. (تقصير:`[README.md]`) (مطلوب:`false`)
 
