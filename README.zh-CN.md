@@ -36,7 +36,7 @@ jobs:
           node-version: 20.x
       # ISO Langusge Codes: https://cloud.google.com/translate/docs/languages
       - name: Adding README - Chinese Simplified
-        uses: ikhsan3adi/translate-multiple-markdown@master
+        uses: ikhsan3adi/translate-multiple-markdown@v1
         with:
           LANG: zh-CN
           FILES: |-
@@ -47,7 +47,7 @@ jobs:
             /very/deep/sub/directories/BAR.md
 
       - name: Adding README - Chinese Traditional
-        uses: ikhsan3adi/translate-multiple-markdown@master
+        uses: ikhsan3adi/translate-multiple-markdown@v1
         with:
           LANG: zh-TW
           FILES: |-
@@ -58,7 +58,7 @@ jobs:
 
 ## 叉
 
-：警告：不要忘记运行`npm run build`在提交之前
+：警告：不要忘记运行`npm run build` before committing
 
 ## 配置
 
@@ -73,7 +73,7 @@ jobs:
 
 ## 支持的语言
 
-可以在此处找到支持的语言<https://cloud.google.com/translate/docs/languages>
+Languages supported can be found here <https://cloud.google.com/translate/docs/languages>
 
 ### 发展
 
