@@ -36,7 +36,7 @@ jobs:
           node-version: 20.x
       # ISO Langusge Codes: https://cloud.google.com/translate/docs/languages
       - name: Adding README - Chinese Simplified
-        uses: ikhsan3adi/translate-multiple-markdown@v1
+        uses: ikhsan3adi/translate-multiple-markdown@master
         with:
           LANG: zh-CN
           FILES: |-
@@ -47,7 +47,7 @@ jobs:
             /very/deep/sub/directories/BAR.md
 
       - name: Adding README - Chinese Traditional
-        uses: ikhsan3adi/translate-multiple-markdown@v1
+        uses: ikhsan3adi/translate-multiple-markdown@master
         with:
           LANG: zh-TW
           FILES: |-
@@ -62,11 +62,11 @@ jobs:
 
 ## 配置
 
-### Options
+### 選項
 
 您可以使用以下選項進一步配置操作：
 
--   `LANG`：您要將自述文件翻譯成的語言。預設為簡體中文。可以在下面找到支援的語言。
+-   `LANG`：您要將自述文件翻譯成的語言。預設為簡體中文。支援的語言可以在下面找到。
     (預設:`zh-CN`） （必需的：`false`)
 
 -   `FILES`：要翻譯成的 Markdown 檔案的換行分隔清單。 (預設:`[README.md]`） （必需的：`false`)
