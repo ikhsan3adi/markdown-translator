@@ -18,8 +18,8 @@ const toMarkdown = (ast) => {
 };
 
 const mainDir = ".";
-const lang = getInput("LANG") || "en";
-const mdFiles = getInput("FILES").split(/\r|\n/);
+const lang = getInput("LANG") || "zh-CH";
+const mdFiles = getInput("FILES").split(/\r|\n/) ?? ['README.md'];
 
 async function translate(files) {
   for (const file of files) {

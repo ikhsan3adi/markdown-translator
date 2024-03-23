@@ -29,32 +29,31 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: 12.x
-      # ISO Langusge Codes: https://cloud.google.com/translate/docs/languages  
+          node-version: 20.x
+      # ISO Langusge Codes: https://cloud.google.com/translate/docs/languages
       - name: Adding README - Chinese Simplified
-        uses: dephraiim/translate-readme@main
+        uses: ikhsan3adi/translate-multiple-markdown@master
         with:
           LANG: zh-CN
+          FILES: |-
+            README.md
+            OTHER-README.md
+            sub/dir/README.md
+            very/deep/sub/directories/FOO.md
+            /very/deep/sub/directories/BAR.md
+
       - name: Adding README - Chinese Traditional
-        uses: dephraiim/translate-readme@main
+        uses: ikhsan3adi/translate-multiple-markdown@master
         with:
           LANG: zh-TW
-      - name: Adding README - Hindi
-        uses: dephraiim/translate-readme@main
-        with:
-          LANG: hi
-      - name: Adding README - Arabic
-        uses: dephraiim/translate-readme@main
-        with:
-          LANG: ar
-      - name: Adding README - French
-        uses: dephraiim/translate-readme@main
-        with:
-          LANG: fr
+          FILES: |-
+            README.md
+            OTHER-README.md
+            ...
 ```
 
 ## Configuration
@@ -65,6 +64,8 @@ You can configure the action further with the following options:
 
 - `LANG`: The language you want to translate your readme to. The default is Simplified Chinese. (I'm a Ghanaian) The supported languages can be found below.
   (default: `zh-CH`) (required: `false`)
+
+- `FILES`: Newline-separated list of the markdown files you want to translate to. (default: `[README.md]`) (required: `true`)
 
 ## Supported Languages
 
