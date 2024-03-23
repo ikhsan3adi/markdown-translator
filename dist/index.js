@@ -50851,8 +50851,8 @@ const toMarkdown = (ast) => {
 };
 
 const mainDir = ".";
-const lang = (0,core.getInput)("LANG") || "en";
-const mdFiles = (0,core.getInput)("FILES").split(/\r|\n/);
+const lang = (0,core.getInput)("LANG") || "zh-CH";
+const mdFiles = (0,core.getInput)("FILES").split(/\r|\n/) ?? ['README.md'];
 
 async function translate(files) {
   for (const file of files) {
@@ -50873,7 +50873,10 @@ async function translate(files) {
       return (await src(text, { to: lang })).text;
     });
 
-    await writeToFile(file, readmeAST, translatedText);
+    const filename = file.split(".")
+    filename.pop();
+
+    await writeToFile(filename, readmeAST, translatedText);
   }
 }
 

@@ -1,6 +1,6 @@
-name: Translate Readme Action
-author: Ephraim Atta-Duncan
-description: Translate the Readme to another language
+name: Translate Multiple Markdown Action
+author: Ikhsan Satriadi
+description: Translate multiple Markdown or Readme to another language
 
 inputs:
   LANG:
@@ -9,7 +9,8 @@ inputs:
     default: 'en'
   FILES:
     description: 'Comma-separated or newline-separated list of the markdown files you want to translate to'
-    required: true
+    required: false
+    default: 'README.md'
 
 runs:
   using: 'node20'

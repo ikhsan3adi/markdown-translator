@@ -1,4 +1,4 @@
-# Translate Readme Action
+# Translate Multiple Markdown Action
 
 ## README Translation
 - [English](README.md)
@@ -8,15 +8,14 @@
 - [Française](README.fr.md)
 - [عربى](README.ar.md)
 
-**GitHub Action to translate Readme to any language**
+**GitHub Action to translate READMEs to any language**
 
 This is a GitHub Action that automatically translate the readme in your repo to a specified language.
-
-_A submission for the [DEV: GitHub Actions For Open Source!](https://dev.to/devteam/announcing-the-github-actions-hackathon-on-dev-3ljn) hackathon_
 
 ## Setup
 
 1. **Add a workflow file** to your project (e.g. `.github/workflows/readme.yml`):
+
 ```yaml
 name: Translate README
 
@@ -65,15 +64,11 @@ You can configure the action further with the following options:
 - `LANG`: The language you want to translate your readme to. The default is Simplified Chinese. (I'm a Ghanaian) The supported languages can be found below.
   (default: `zh-CH`) (required: `false`)
 
-- `FILES`: Newline-separated list of the markdown files you want to translate to. (default: `[README.md]`) (required: `true`)
+- `FILES`: Newline-separated list of the markdown files you want to translate to. (default: `[README.md]`) (required: `false`)
 
 ## Supported Languages
 
 Languages supported can be found here https://cloud.google.com/translate/docs/languages
-
-### Issues
-
-Check [here](https://github.com/dephraiim/translate-readme/issues/1) for issues related to this action.
 
 ### Development
 

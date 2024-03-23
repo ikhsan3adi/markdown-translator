@@ -1,7 +1,7 @@
 {
-  "name": "translate-md",
+  "name": "translate-multi-md",
   "version": "1.0.0",
-  "description": "A Github Action to translate Readme to a different language",
+  "description": "Translate multiple Markdown or Readme to another language",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -11,9 +11,10 @@
   "keywords": [
     "readme",
     "translate",
-    "translator"
+    "translator",
+    "docs"
   ],
-  "author": "Ephraim Atta-Duncan",
+  "author": "Ikhsan Satriadi",
   "license": "ISC",
   "dependencies": {
     "@actions/core": "^1.2.6",
