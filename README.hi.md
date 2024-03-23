@@ -1,23 +1,21 @@
-# रीडमी एक्शन का अनुवाद करें
+# मल्टीपल मार्कडाउन एक्शन का अनुवाद करें
 
-## रीडमे अनुवाद
+## रीडमी अनुवाद
 
 -   [अंग्रेज़ी](README.md)
 -   [सरलीकृत चीनी](README.zh-CN.md)
 -   [परंपरागत चीनी](README.zh-TW.md)
 -   [हिंदी](README.hi.md)
--   [फ्रेंच](README.fr.md)
+-   [फ़्रेंच](README.fr.md)
 -   [अरब](README.ar.md)
 
-**रीडमी का किसी भी भाषा में अनुवाद करने के लिए गिटहब एक्शन**
+**रीडमी को किसी भी भाषा में अनुवाद करने के लिए GitHub एक्शन**
 
-यह एक गिटहब एक्शन है जो आपके रेपो में रीडमी को एक निर्दिष्ट भाषा में स्वचालित रूप से अनुवादित करता है।
-
-_के लिए एक सबमिशन[DEV: ओपन सोर्स के लिए गिटहब एक्शन!](https://dev.to/devteam/announcing-the-github-actions-hackathon-on-dev-3ljn)आयोजित हैकथॉन_
+यह एक GitHub क्रिया है जो स्वचालित रूप से आपके रेपो में रीडमी को एक निर्दिष्ट भाषा में अनुवादित करती है।
 
 ## स्थापित करना
 
-1.  **कार्यप्रवाह फ़ाइल जोड़ें**आपकी परियोजना के लिए (उदा।`.github/workflows/readme.yml`):
+1.  **वर्कफ़्लो फ़ाइल जोड़ें**आपके प्रोजेक्ट के लिए (उदा.`.github/workflows/readme.yml`):
 
 ```yaml
 name: Translate README
@@ -31,50 +29,47 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: 12.x
-      # ISO Langusge Codes: https://cloud.google.com/translate/docs/languages  
+          node-version: 20.x
+      # ISO Langusge Codes: https://cloud.google.com/translate/docs/languages
       - name: Adding README - Chinese Simplified
-        uses: dephraiim/translate-readme@main
+        uses: ikhsan3adi/translate-multiple-markdown@master
         with:
           LANG: zh-CN
+          FILES: |-
+            README.md
+            OTHER-README.md
+            sub/dir/README.md
+            very/deep/sub/directories/FOO.md
+            /very/deep/sub/directories/BAR.md
+
       - name: Adding README - Chinese Traditional
-        uses: dephraiim/translate-readme@main
+        uses: ikhsan3adi/translate-multiple-markdown@master
         with:
           LANG: zh-TW
-      - name: Adding README - Hindi
-        uses: dephraiim/translate-readme@main
-        with:
-          LANG: hi
-      - name: Adding README - Arabic
-        uses: dephraiim/translate-readme@main
-        with:
-          LANG: ar
-      - name: Adding README - French
-        uses: dephraiim/translate-readme@main
-        with:
-          LANG: fr
+          FILES: |-
+            README.md
+            OTHER-README.md
+            ...
 ```
 
 ## विन्यास
 
 ### विकल्प
 
-आप निम्न विकल्पों के साथ कार्रवाई को और कॉन्फ़िगर कर सकते हैं:
+आप निम्नलिखित विकल्पों के साथ कार्रवाई को आगे कॉन्फ़िगर कर सकते हैं:
 
--   `LANG`: The language you want to translate your readme to. The default is Simplified Chinese. (I'm a Ghanaian) The supported languages can be found below.
-    (default: `zh-CH`) (आवश्यक:`false`)
+-   `LANG`: वह भाषा जिसमें आप अपने रीडमी का अनुवाद करना चाहते हैं। डिफ़ॉल्ट सरलीकृत चीनी है. (मैं घाना का निवासी हूं) समर्थित भाषाएं नीचे पाई जा सकती हैं।
+    (गलती करना:`zh-CH`) (आवश्यक:`false`)
+
+-   `FILES`: उन मार्कडाउन फ़ाइलों की न्यूलाइन-अलग की गई सूची जिनका आप अनुवाद करना चाहते हैं। (गलती करना:`[README.md]`) (आवश्यक:`false`)
 
 ## समर्थित भाषाएँ
 
 समर्थित भाषाएँ यहाँ पाई जा सकती हैं[हत्तपः://क्लाउड.गूगल.कॉम/ट्रांसलेट/डॉक्स/लैंग्वेजेज](https://cloud.google.com/translate/docs/languages)
-
-### मुद्दे
-
-जांच[यहां](https://github.com/dephraiim/translate-readme/issues/1)इस कार्रवाई से संबंधित मुद्दों के लिए।
 
 ### विकास
 
