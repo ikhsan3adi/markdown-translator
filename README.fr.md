@@ -66,8 +66,8 @@ jobs:
 
 Vous pouvez configurer davantage l'action avec les options suivantes :
 
--   `LANG`: La langue dans laquelle vous souhaitez traduire votre fichier Lisez-moi. La valeur par défaut est le chinois simplifié. (Je suis ghanéen) Les langues prises en charge se trouvent ci-dessous.
-    (défaut:`zh-CH`) (requis:`false`)
+-   `LANG`: La langue dans laquelle vous souhaitez traduire votre fichier Lisez-moi. La valeur par défaut est le chinois simplifié. Les langues prises en charge peuvent être trouvées ci-dessous.
+    (défaut:`zh-CN`) (requis:`false`)
 
 -   `FILES`: Liste séparée par des sauts de ligne des fichiers markdown vers lesquels vous souhaitez traduire. (défaut:`[README.md]`) (requis:`false`)
 
