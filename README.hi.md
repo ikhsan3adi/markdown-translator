@@ -3,7 +3,7 @@
 ## रीडमी अनुवाद
 
 -   [अंग्रेज़ी](README.md)
--   [सरलीकृत चीनी](README.zh-CN.md)
+-   [简体中文](README.zh-CN.md)
 -   [परंपरागत चीनी](README.zh-TW.md)
 -   [हिंदी](README.hi.md)
 -   [फ़्रेंच](README.fr.md)
@@ -15,7 +15,7 @@
 
 ## स्थापित करना
 
-1.  **वर्कफ़्लो फ़ाइल जोड़ें**आपके प्रोजेक्ट के लिए (उदा.`.github/workflows/readme.yml`):
+**वर्कफ़्लो फ़ाइल जोड़ें**आपके प्रोजेक्ट के लिए (उदा.`.github/workflows/readme.yml`):
 
 ```yaml
 name: Translate README
@@ -55,6 +55,10 @@ jobs:
             OTHER-README.md
             ...
 ```
+
+## काँटा
+
+:चेतावनी: दौड़ना न भूलें`npm run build`प्रतिबद्ध होने से पहले
 
 ## विन्यास
 
