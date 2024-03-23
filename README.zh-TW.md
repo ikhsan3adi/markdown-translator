@@ -58,11 +58,11 @@ jobs:
 
 ## 叉
 
-：警告：不要忘記運行`npm run build`在提交之前
+：警告：不要忘記運行`npm run build` before committing
 
 ## 配置
 
-### 選項
+### Options
 
 您可以使用以下選項進一步配置操作：
 
