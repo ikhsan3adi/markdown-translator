@@ -14,7 +14,7 @@ This is a GitHub Action that automatically translate the readme in your repo to 
 
 ## Setup
 
-1. **Add a workflow file** to your project (e.g. `.github/workflows/readme.yml`):
+**Add a workflow file** to your project (e.g. `.github/workflows/readme.yml`):
 
 ```yaml
 name: Translate README
@@ -54,6 +54,10 @@ jobs:
             OTHER-README.md
             ...
 ```
+
+## Fork
+
+:warning: Don't forget to run `npm run build` before committing
 
 ## Configuration
 
