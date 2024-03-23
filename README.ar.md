@@ -9,13 +9,13 @@
 -   [فرنسي](README.fr.md)
 -   [عربى](README.ar.md)
 
-**إجراء GitHub لترجمة الملفات التمهيدية إلى أي لغة**
+**GitHub Action to translate READMEs to any language**
 
 هذا هو إجراء GitHub الذي يقوم تلقائيًا بترجمة الملف التمهيدي في الريبو الخاص بك إلى لغة محددة.
 
 ## يثبت
 
-1.  **إضافة ملف سير العمل**لمشروعك (على سبيل المثال`.github/workflows/readme.yml`):
+**إضافة ملف سير العمل**لمشروعك (على سبيل المثال`.github/workflows/readme.yml`):
 
 ```yaml
 name: Translate README
@@ -56,6 +56,10 @@ jobs:
             ...
 ```
 
+## شوكة
+
+:تحذير: لا تنسى الركض`npm run build`قبل الالتزام
+
 ## إعدادات
 
 ### خيارات
@@ -65,7 +69,7 @@ jobs:
 -   `LANG`: اللغة التي تريد ترجمة الملف التمهيدي إليها. الافتراضي هو الصينية المبسطة. (أنا غاني) يمكن العثور على اللغات المدعومة أدناه.
     (تقصير:`zh-CH`) (مطلوب:`false`)
 
--   `FILES`: قائمة مفصولة بسطر جديد لملفات تخفيض السعر التي تريد الترجمة إليها. (تقصير:`[README.md]`) (مطلوب:`false`)
+-   `FILES`: Newline-separated list of the markdown files you want to translate to. (default: `[README.md]`) (مطلوب:`false`)
 
 ## اللغات المدعومة
 
@@ -73,7 +77,7 @@ jobs:
 
 ### تطوير
 
-Suggestions and contributions are always welcome!
+الاقتراحات والمساهمات هي دائما موضع ترحيب!
 
 ### رخصة
 
