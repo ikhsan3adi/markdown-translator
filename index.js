@@ -18,40 +18,39 @@ const toMarkdown = (ast) => {
 };
 
 const mainDir = ".";
-const lang = getInput("LANG") || "zh-CH";
+const lang = getInput("LANG") || "zh-CN";
 const mdFiles = getInput("FILES").split(/\r|\n/) ?? ['README.md'];
 
 async function translate(files) {
   for (const file of files) {
-    const readme = readFileSync(join(mainDir, file), { encoding: "utf8" });
-    const readmeAST = toAst(readme);
+    const md = readFileSync(join(mainDir, file), { encoding: "utf8" });
+    const mdAST = toAst(md);
     console.log(`${file} AST CREATED AND READ`);
 
-    let originalText = [];
+    const textNodes = [];
+    const promises = []
 
-    visit(readmeAST, async (node) => {
-      if (node.type === "text") {
-        originalText.push(node.value);
-        node.value = (await $(node.value, { to: lang })).text;
-      }
+    visit(mdAST, async (node) => {
+      if (node.type === "text") textNodes.push(node);
     });
 
-    const translatedText = originalText.map(async (text) => {
-      return (await $(text, { to: lang })).text;
-    });
+    for (const node of textNodes) {
+      promises.push((async () => node.value = (await $(node.value, { to: lang })).text)())
+    }
+
+    await Promise.all(promises)
 
     const filename = file.split(".")
     filename.pop();
 
-    await writeToFile(filename, readmeAST, translatedText);
+    await writeToFile(filename, mdAST);
   }
 }
 
-async function writeToFile(filename, readmeAST, translatedText) {
-  await Promise.all(translatedText);
+async function writeToFile(filename, mdAST) {
   writeFileSync(
     join(mainDir, `${filename}.${lang}.md`),
-    toMarkdown(readmeAST),
+    toMarkdown(mdAST),
     "utf8"
   );
   console.log(`${filename}.${lang}.md written`);
@@ -66,7 +65,7 @@ async function commitChanges() {
     "41898282+github-actions[bot]@users.noreply.github.com"
   );
   await git.commit(
-    `docs: Added README."${lang}".md translation via https://github.com/dephraiim/translate-readme`
+    `docs: Added *.${lang}.md translation via https://github.com/ikhsan3adi/translate-multiple-markdown`
   );
   console.log("finished commit");
   await git.push();
@@ -75,6 +74,7 @@ async function commitChanges() {
 
 async function translateReadme() {
   try {
+    await git.pull();
     await translate(mdFiles);
     await commitChanges();
     console.log("Done");
