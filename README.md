@@ -4,17 +4,18 @@
 - [English](README.md)
 - [简体中文](README.zh-CN.md)
 - [繁体中文](README.zh-TW.md)
+- [Bahasa Indonesia](README.id.md)
 - [हिंदी](README.hi.md)
 - [Française](README.fr.md)
 - [عربى](README.ar.md)
 
-**GitHub Action to translate READMEs to any language**
+**GitHub Action to translate MARKDOWN/READMEs to any language**
 
-This is a GitHub Action that automatically translate the readme in your repo to a specified language.
+Translate MARKDOWN files to various other languages, supports multiple files and subdirectories.
 
 ## Setup
 
-**Add a workflow file** to your project (e.g. `.github/workflows/readme.yml`):
+**Add a workflow file** to your project (e.g. `.github/workflows/translate-readme.yml`):
 
 ```yaml
 name: Translate README
@@ -33,9 +34,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
-      # ISO Langusge Codes: https://cloud.google.com/translate/docs/languages
+      # ISO Language Codes: https://cloud.google.com/translate/docs/languages
       - name: Adding README - Chinese Simplified
-        uses: ikhsan3adi/translate-multiple-markdown@master
+        uses: ikhsan3adi/markdown-translator@master
         with:
           LANG: zh-CN
           FILES: |-
@@ -46,7 +47,7 @@ jobs:
             /very/deep/sub/directories/BAR.md
 
       - name: Adding README - Chinese Traditional
-        uses: ikhsan3adi/translate-multiple-markdown@master
+        uses: ikhsan3adi/markdown-translator@master
         with:
           LANG: zh-TW
           FILES: |-
