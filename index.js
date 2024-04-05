@@ -1,5 +1,5 @@
 import { getInput } from "@actions/core";
-import $ from "@tomsun28/google-translate-api";
+import translate from "@tomsun28/google-translate-api";
 import { readFileSync, writeFileSync } from "fs";
 import { join } from "path";
 import parse from "remark-parse";
@@ -7,80 +7,76 @@ import stringify from "remark-stringify";
 import simpleGit from "simple-git";
 import unified from "unified";
 import visit from "unist-util-visit";
-const git = simpleGit();
-
-const toAst = (markdown) => {
-  return unified().use(parse).parse(markdown);
-};
-
-const toMarkdown = (ast) => {
-  return unified().use(stringify).stringify(ast);
-};
 
 const mainDir = ".";
-const lang = getInput("LANG") || "zh-CN";
-const mdFiles = getInput("FILES").split(/\r|\n/) ?? ['README.md'];
 
-async function translate(files) {
+async function translateMarkdowns(lang, files) {
   for (const file of files) {
-    const md = readFileSync(join(mainDir, file), { encoding: "utf8" });
-    const mdAST = toAst(md);
-    console.log(`${file} AST CREATED AND READ`);
+    const { mdAST, textNodes } = createTextNodes(file);
 
-    const textNodes = [];
-    const promises = []
+    await Promise.all(textNodes.map((node) => {
+      return (async () => node.value = (await translate(node.value, { to: lang })).text)();
+    }))
 
-    visit(mdAST, async (node) => {
-      if (node.type === "text") textNodes.push(node);
-    });
-
-    for (const node of textNodes) {
-      promises.push((async () => node.value = (await $(node.value, { to: lang })).text)())
-    }
-
-    await Promise.all(promises)
-
+    const markdown = unified().use(stringify).stringify(mdAST)
     const filename = file.split(".")
-    filename.pop();
+    filename.splice(filename.length - 1, 0, lang)
 
-    await writeToFile(filename, mdAST);
+    writeToFile(filename.join("."), markdown);
   }
 }
 
-async function writeToFile(filename, mdAST) {
+function createTextNodes(filename) {
+  const md = readFileSync(join(mainDir, filename), { encoding: "utf8" });
+  const mdAST = unified().use(parse).parse(md);
+
+  const textNodes = [];
+
+  visit(mdAST, async (node) => {
+    if (node.type === "text") textNodes.push(node);
+  });
+
+  return { mdAST, textNodes }
+}
+
+function writeToFile(filename, markdown) {
   writeFileSync(
-    join(mainDir, `${filename}.${lang}.md`),
-    toMarkdown(mdAST),
+    join(mainDir, filename),
+    markdown,
     "utf8"
   );
-  console.log(`${filename}.${lang}.md written`);
+  console.log(`${filename} written`);
 }
 
 async function commitChanges() {
+  const git = simpleGit();
+  await git.pull();
   console.log("commit started");
   await git.add("./*");
   await git.addConfig("user.name", "github-actions[bot]");
   await git.addConfig(
     "user.email",
-    "41898282+github-actions[bot]@users.noreply.github.com"
+    "github-actions[bot]@users.noreply.github.com"
   );
   await git.commit(
-    `docs: Added *.${lang}.md translation via https://github.com/ikhsan3adi/translate-multiple-markdown`
+    `docs: Added ${lang} markdown(s) translation via https://github.com/ikhsan3adi/markdown-translator`
   );
   console.log("finished commit");
   await git.push();
   console.log("pushed");
 }
 
-async function translateReadme() {
+async function main() {
   try {
-    await git.pull();
-    await translate(mdFiles);
-    await commitChanges();
+    const lang = getInput("LANG") || "zh-CN";
+    const mdFiles = getInput("FILES").split(/\r|\n/) ?? ["README.md"];
+
+    await translateMarkdowns(lang, mdFiles);
+    // await commitChanges();
     console.log("Done");
   } catch (error) {
-    throw new Error(error);
+    console.error(error);
   }
 }
 
-translateReadme();
+main();

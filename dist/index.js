@@ -50282,7 +50282,7 @@ init_pathspec();
 
 // src/lib/errors/git-construct-error.ts
 init_git_error();
-var GitConstructError = class extends GitError {
+var GitConstructError = class extends (/* unused pure expression or super */ null && (GitError)) {
   constructor(config, message) {
     super(void 0, message);
     this.config = config;
@@ -50294,7 +50294,7 @@ init_git_error();
 
 // src/lib/errors/git-plugin-error.ts
 init_git_error();
-var GitPluginError = class extends GitError {
+var GitPluginError = class extends (/* unused pure expression or super */ null && (GitError)) {
   constructor(task, plugin, message) {
     super(task, message);
     this.task = task;
@@ -50419,10 +50419,10 @@ function completionDetectionPlugin({
   function createEvents() {
     let exitCode = -1;
     const events = {
-      close: (0,promise_deferred_dist/* deferred */.gX)(),
-      closeTimeout: (0,promise_deferred_dist/* deferred */.gX)(),
-      exit: (0,promise_deferred_dist/* deferred */.gX)(),
-      exitTimeout: (0,promise_deferred_dist/* deferred */.gX)()
+      close: deferred(),
+      closeTimeout: deferred(),
+      exit: deferred(),
+      exitTimeout: deferred()
     };
     const result = Promise.race([
       onClose === false ? never : events.closeTimeout.promise,
@@ -50821,8 +50821,8 @@ function toError(error) {
 }
 
 // src/esm.mjs
-var simpleGit = (/* unused pure expression or super */ null && (gitInstanceFactory));
-var esm_default = gitInstanceFactory;
+var esm_simpleGit = (/* unused pure expression or super */ null && (gitInstanceFactory));
+var esm_default = (/* unused pure expression or super */ null && (gitInstanceFactory));
 
 //# sourceMappingURL=index.js.map
 
@@ -50840,83 +50840,79 @@ var unist_util_visit = __nccwpck_require__(199);
 
 
 
-const git = esm_default();
-
-const toAst = (markdown) => {
-  return unified().use(remark_parse).parse(markdown);
-};
-
-const toMarkdown = (ast) => {
-  return unified().use(remark_stringify).stringify(ast);
-};
 
 const mainDir = ".";
-const lang = (0,core.getInput)("LANG") || "zh-CN";
-const mdFiles = (0,core.getInput)("FILES").split(/\r|\n/) ?? ['README.md'];
 
-async function translate(files) {
+async function translateMarkdowns(lang, files) {
   for (const file of files) {
-    const md = (0,external_fs_.readFileSync)((0,external_path_.join)(mainDir, file), { encoding: "utf8" });
-    const mdAST = toAst(md);
-    console.log(`${file} AST CREATED AND READ`);
+    const { mdAST, textNodes } = createTextNodes(file);
 
-    const textNodes = [];
-    const promises = []
+    await Promise.all(textNodes.map((node) => {
+      return (async () => node.value = (await src(node.value, { to: lang })).text)();
+    }))
 
-    unist_util_visit(mdAST, async (node) => {
-      if (node.type === "text") textNodes.push(node);
-    });
-
-    for (const node of textNodes) {
-      promises.push((async () => node.value = (await src(node.value, { to: lang })).text)())
-    }
-
-    await Promise.all(promises)
-
+    const markdown = unified().use(remark_stringify).stringify(mdAST)
     const filename = file.split(".")
-    filename.pop();
+    filename.splice(filename.length - 1, 0, lang)
 
-    await writeToFile(filename, mdAST);
+    writeToFile(filename.join("."), markdown);
   }
 }
 
-async function writeToFile(filename, mdAST) {
+function createTextNodes(filename) {
+  const md = (0,external_fs_.readFileSync)((0,external_path_.join)(mainDir, filename), { encoding: "utf8" });
+  const mdAST = unified().use(remark_parse).parse(md);
+
+  const textNodes = [];
+
+  unist_util_visit(mdAST, async (node) => {
+    if (node.type === "text") textNodes.push(node);
+  });
+
+  return { mdAST, textNodes }
+}
+
+function writeToFile(filename, markdown) {
   (0,external_fs_.writeFileSync)(
-    (0,external_path_.join)(mainDir, `${filename}.${lang}.md`),
-    toMarkdown(mdAST),
+    (0,external_path_.join)(mainDir, filename),
+    markdown,
     "utf8"
   );
-  console.log(`${filename}.${lang}.md written`);
+  console.log(`${filename} written`);
 }
 
 async function commitChanges() {
+  const git = simpleGit();
+  await git.pull();
   console.log("commit started");
   await git.add("./*");
   await git.addConfig("user.name", "github-actions[bot]");
   await git.addConfig(
     "user.email",
-    "41898282+github-actions[bot]@users.noreply.github.com"
+    "github-actions[bot]@users.noreply.github.com"
   );
   await git.commit(
-    `docs: Added *.${lang}.md translation via https://github.com/ikhsan3adi/translate-multiple-markdown`
+    `docs: Added ${lang} markdown(s) translation via https://github.com/ikhsan3adi/markdown-translator`
   );
   console.log("finished commit");
   await git.push();
   console.log("pushed");
 }
 
-async function translateReadme() {
+async function main() {
   try {
-    await git.pull();
-    await translate(mdFiles);
-    await commitChanges();
+    const lang = (0,core.getInput)("LANG") || "zh-CN";
+    const mdFiles = (0,core.getInput)("FILES").split(/\r|\n/) ?? ["README.md"];
+
+    await translateMarkdowns(lang, mdFiles);
+    // await commitChanges();
     console.log("Done");
   } catch (error) {
-    throw new Error(error);
+    console.error(error);
   }
 }
 
-translateReadme();
+main();
 
 })();
 
