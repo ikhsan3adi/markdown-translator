@@ -1,4 +1,4 @@
-# Terjemahkan Tindakan Penurunan Harga Berganda
+# Tindakan Penerjemah Penurunan Harga
 
 ## Terjemahan README
 
