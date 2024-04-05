@@ -1,4 +1,4 @@
-# Traduire plusieurs actions de démarque
+# Action du traducteur Markdown
 
 ## Traduction du fichier README
 
