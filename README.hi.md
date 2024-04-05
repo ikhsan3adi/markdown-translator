@@ -5,17 +5,18 @@
 -   [अंग्रेज़ी](README.md)
 -   [सरलीकृत चीनी](README.zh-CN.md)
 -   [परंपरागत चीनी](README.zh-TW.md)
+-   [इन्डोनेशियाई](README.id.md)
 -   [हिंदी](README.hi.md)
 -   [फ़्रेंच](README.fr.md)
 -   [अरब](README.ar.md)
 
-**रीडमी को किसी भी भाषा में अनुवाद करने के लिए GitHub एक्शन**
+**किसी भी भाषा में MARKDOWN/READMEs का अनुवाद करने के लिए GitHub एक्शन**
 
-यह एक GitHub क्रिया है जो स्वचालित रूप से आपके रेपो में रीडमी को एक निर्दिष्ट भाषा में अनुवादित करती है।
+MARKDOWN फ़ाइलों का विभिन्न अन्य भाषाओं में अनुवाद करें, एकाधिक फ़ाइलों और उपनिर्देशिकाओं का समर्थन करता है।
 
 ## स्थापित करना
 
-**वर्कफ़्लो फ़ाइल जोड़ें**आपके प्रोजेक्ट के लिए (उदा.`.github/workflows/readme.yml`):
+**वर्कफ़्लो फ़ाइल जोड़ें**आपके प्रोजेक्ट के लिए (उदा.`.github/workflows/translate-readme.yml`):
 
 ```yaml
 name: Translate README
@@ -34,9 +35,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
-      # ISO Langusge Codes: https://cloud.google.com/translate/docs/languages
+      # ISO Language Codes: https://cloud.google.com/translate/docs/languages
       - name: Adding README - Chinese Simplified
-        uses: ikhsan3adi/translate-multiple-markdown@master
+        uses: ikhsan3adi/markdown-translator@master
         with:
           LANG: zh-CN
           FILES: |-
@@ -47,7 +48,7 @@ jobs:
             /very/deep/sub/directories/BAR.md
 
       - name: Adding README - Chinese Traditional
-        uses: ikhsan3adi/translate-multiple-markdown@master
+        uses: ikhsan3adi/markdown-translator@master
         with:
           LANG: zh-TW
           FILES: |-
@@ -69,7 +70,7 @@ jobs:
 -   `LANG`: वह भाषा जिसमें आप अपने रीडमी का अनुवाद करना चाहते हैं। डिफ़ॉल्ट सरलीकृत चीनी है. समर्थित भाषाएँ नीचे पाई जा सकती हैं।
     (गलती करना:`zh-CN`) (आवश्यक:`false`)
 
--   `FILES`: उन मार्कडाउन फ़ाइलों की न्यूलाइन-अलग की गई सूची जिनका आप अनुवाद करना चाहते हैं। (गलती करना:`[README.md]`) (आवश्यक:`false`)
+-   `FILES`: उन मार्कडाउन फ़ाइलों की नई-पृथक सूची जिनका आप अनुवाद करना चाहते हैं। (गलती करना:`[README.md]`) (आवश्यक:`false`)
 
 ## समर्थित भाषाएँ
 
