@@ -5,17 +5,18 @@
 -   [Anglais](README.md)
 -   [Chinois simplifié](README.zh-CN.md)
 -   [chinois traditionnel](README.zh-TW.md)
+-   [indonésien](README.id.md)
 -   [hindi](README.hi.md)
 -   [Française](README.fr.md)
 -   [arabe](README.ar.md)
 
-**GitHub Action pour traduire les README dans n'importe quelle langue**
+**GitHub Action pour traduire les MARKDOWN/README dans n'importe quelle langue**
 
-Il s'agit d'une action GitHub qui traduit automatiquement le fichier Lisez-moi de votre dépôt dans une langue spécifiée.
+Traduisez les fichiers MARKDOWN dans diverses autres langues, prend en charge plusieurs fichiers et sous-répertoires.
 
 ## Installation
 
-**Ajouter un fichier de workflow**à votre projet (par ex.`.github/workflows/readme.yml`):
+**Ajouter un fichier de workflow**à votre projet (par ex.`.github/workflows/translate-readme.yml`):
 
 ```yaml
 name: Translate README
@@ -34,9 +35,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
-      # ISO Langusge Codes: https://cloud.google.com/translate/docs/languages
+      # ISO Language Codes: https://cloud.google.com/translate/docs/languages
       - name: Adding README - Chinese Simplified
-        uses: ikhsan3adi/translate-multiple-markdown@master
+        uses: ikhsan3adi/markdown-translator@master
         with:
           LANG: zh-CN
           FILES: |-
@@ -47,7 +48,7 @@ jobs:
             /very/deep/sub/directories/BAR.md
 
       - name: Adding README - Chinese Traditional
-        uses: ikhsan3adi/translate-multiple-markdown@master
+        uses: ikhsan3adi/markdown-translator@master
         with:
           LANG: zh-TW
           FILES: |-
