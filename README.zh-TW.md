@@ -5,17 +5,18 @@
 -   [英語](README.md)
 -   [簡體中文](README.zh-CN.md)
 -   [繁體中文](README.zh-TW.md)
+-   [印尼](README.id.md)
 -   [印地語](README.hi.md)
 -   [法語](README.fr.md)
 -   [阿拉伯](README.ar.md)
 
-**GitHub Action 將 README 翻譯成任何語言**
+**GitHub Action 將 MARKDOWN/README 翻譯成任何語言**
 
-這是一個 GitHub Action，可自動將儲存庫中的自述文件翻譯為指定語言。
+將 MARKDOWN 文件翻譯為各種其他語言，支援多個文件和子目錄。
 
 ## 設定
 
-**新增工作流程文件**到您的專案（例如`.github/workflows/readme.yml`):
+**新增工作流程文件**到您的專案（例如`.github/workflows/translate-readme.yml`):
 
 ```yaml
 name: Translate README
@@ -34,9 +35,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
-      # ISO Langusge Codes: https://cloud.google.com/translate/docs/languages
+      # ISO Language Codes: https://cloud.google.com/translate/docs/languages
       - name: Adding README - Chinese Simplified
-        uses: ikhsan3adi/translate-multiple-markdown@master
+        uses: ikhsan3adi/markdown-translator@master
         with:
           LANG: zh-CN
           FILES: |-
@@ -47,7 +48,7 @@ jobs:
             /very/deep/sub/directories/BAR.md
 
       - name: Adding README - Chinese Traditional
-        uses: ikhsan3adi/translate-multiple-markdown@master
+        uses: ikhsan3adi/markdown-translator@master
         with:
           LANG: zh-TW
           FILES: |-
@@ -66,7 +67,7 @@ jobs:
 
 您可以使用以下選項進一步配置操作：
 
--   `LANG`：您要將自述文件翻譯成的語言。預設為簡體中文。支援的語言可以在下面找到。
+-   `LANG`：您要將自述文件翻譯成的語言。預設為簡體中文。可以在下面找到支援的語言。
     (預設:`zh-CN`） （必需的：`false`)
 
 -   `FILES`：要翻譯成的 Markdown 檔案的換行分隔清單。 (預設:`[README.md]`） （必需的：`false`)
