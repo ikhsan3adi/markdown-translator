@@ -1,4 +1,4 @@
-# Translate Multiple Markdown Action
+# Markdown Translator Action
 
 ## README Translation
 - [English](README.md)
