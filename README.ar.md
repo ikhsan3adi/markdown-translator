@@ -5,17 +5,18 @@
 -   [إنجليزي](README.md)
 -   [الصينية المبسطة](README.zh-CN.md)
 -   [الصينية التقليدية](README.zh-TW.md)
+-   [الاندونيسية](README.id.md)
 -   [الهندية](README.hi.md)
 -   [فرنسي](README.fr.md)
 -   [عربى](README.ar.md)
 
-**إجراء GitHub لترجمة الملفات التمهيدية إلى أي لغة**
+**إجراء GitHub لترجمة MARKDOWN/READMEs إلى أي لغة**
 
-هذا هو إجراء GitHub الذي يقوم تلقائيًا بترجمة الملف التمهيدي في الريبو الخاص بك إلى لغة محددة.
+ترجمة ملفات MARKDOWN إلى لغات أخرى مختلفة، ويدعم ملفات وأدلة فرعية متعددة.
 
 ## يثبت
 
-**إضافة ملف سير العمل**لمشروعك (على سبيل المثال`.github/workflows/readme.yml`):
+**إضافة ملف سير العمل**لمشروعك (على سبيل المثال`.github/workflows/translate-readme.yml`):
 
 ```yaml
 name: Translate README
@@ -34,9 +35,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
-      # ISO Langusge Codes: https://cloud.google.com/translate/docs/languages
+      # ISO Language Codes: https://cloud.google.com/translate/docs/languages
       - name: Adding README - Chinese Simplified
-        uses: ikhsan3adi/translate-multiple-markdown@master
+        uses: ikhsan3adi/markdown-translator@master
         with:
           LANG: zh-CN
           FILES: |-
@@ -47,7 +48,7 @@ jobs:
             /very/deep/sub/directories/BAR.md
 
       - name: Adding README - Chinese Traditional
-        uses: ikhsan3adi/translate-multiple-markdown@master
+        uses: ikhsan3adi/markdown-translator@master
         with:
           LANG: zh-TW
           FILES: |-
@@ -77,7 +78,7 @@ jobs:
 
 ### تطوير
 
-الاقتراحات والمساهمات هي دائما موضع ترحيب!
+الاقتراحات والمساهمات هي موضع ترحيب دائما!
 
 ### رخصة
 
