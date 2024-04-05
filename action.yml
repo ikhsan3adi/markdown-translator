@@ -1,12 +1,12 @@
-name: Translate Multiple Markdown Action
+name: Markdown Translator Action
 author: Ikhsan Satriadi
-description: Translate multiple Markdown or Readme to another language
+description: Translate MARKDOWN/READMEs to another language
 
 inputs:
   LANG:
     description: 'The Language you want to translate to'
     required: false
-    default: 'en'
+    default: 'zh-CN'
   FILES:
     description: 'Comma-separated or newline-separated list of the markdown files you want to translate to'
     required: false

@@ -1,7 +1,7 @@
 {
-  "name": "translate-multi-md",
+  "name": "markdown-translator",
   "version": "1.0.0",
-  "description": "Translate multiple Markdown or Readme to another language",
+  "description": "Translate MARKDOWN/READMEs to another language",
   "main": "index.js",
   "type": "module",
   "scripts": {
