@@ -1,4 +1,5 @@
-import './sourcemap-register.cjs';import { createRequire as __WEBPACK_EXTERNAL_createRequire } from "module";
+import { createRequire as __WEBPACK_EXTERNAL_createRequire } from "module";
+import './sourcemap-register.cjs';
 /******/ var __webpack_modules__ = ({
 
 /***/ 7351:
@@ -50881,7 +50882,7 @@ function writeToFile(filename, markdown) {
   console.log(`${filename} written`);
 }
 
-async function commitChanges() {
+async function commitChanges(lang) {
   const git = esm_default();
   await git.pull();
   console.log("commit started");
@@ -50905,10 +50906,11 @@ async function main() {
     const mdFiles = (0,core.getInput)("FILES").split(/\r|\n/) ?? ["README.md"];
 
     await translateMarkdowns(lang, mdFiles);
-    await commitChanges();
+    await commitChanges(lang);
     console.log("Done");
   } catch (error) {
     console.error(error);
+    throw error
   }
 }
 
