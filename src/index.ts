@@ -70,10 +70,10 @@ async function commitChanges(lang: string) {
 
 async function main() {
   try {
-    const lang = getInput('LANG') || 'jw'
+    const lang = getInput('LANG') || 'zh-CN'
     const mdFiles = getInput('FILES').split(/\r|\n/) ?? ['README.md']
 
-    await translateMarkdowns(lang, ['README.md'])
+    await translateMarkdowns(lang, mdFiles)
     await commitChanges(lang)
     console.log('Done')
   } catch (error) {
