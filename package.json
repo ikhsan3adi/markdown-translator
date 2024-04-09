@@ -5,8 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "ncc build index.js -o dist --source-map",
-    "build:commit": "npm run build && git add . && git commit"
+    "build": "ncc build src/index.ts -o dist -s",
+    "build:commit": "npm run build && git add . && git commit",
+    "start": "npx tsx src/index.ts"
   },
   "keywords": [
     "readme",
@@ -28,6 +29,13 @@
     "unist-util-visit": "^2.0.3"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.38.1"
+    "@vercel/ncc": "^0.38.1",
+    "@types/node": "^20.11.30",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "eslint": "^8.57.0",
+    "prettier": "3.2.5",
+    "typescript": "^5.4.3",
+    "typescript-eslint": "^7.4.0",
+    "tsx": "^4.7.1"
   }
 }
