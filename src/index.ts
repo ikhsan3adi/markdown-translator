@@ -61,7 +61,7 @@ async function commitChanges(lang: string) {
     'github-actions[bot]@users.noreply.github.com',
   )
   await git.commit(
-    `docs: Added ${lang} markdown(s) translation via https://github.com/ikhsan3adi/markdown-translator`,
+    `docs: Added ${lang} markdown(s) translation via https://github.com/${process.env.GITHUB_ACTION_REPOSITORY}`,
   )
   console.log('finished commit')
   await git.push()
