@@ -18,7 +18,7 @@ jobs:
       - name: Adding README Translations
         uses: ikhsan3adi/markdown-translator@master
         with:
-          LANG: -|
+          LANG: |-
             id
             zh-CN
             zh-TW
