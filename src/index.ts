@@ -90,13 +90,15 @@ async function main() {
 
     if (Array.isArray(langs)) {
       const git = await setupGit()
-      await Promise.all(
+      const translatedMDs = await Promise.all(
         langs.map(async (lang) => {
           if (!lang) return
-          const translatedMDs = await translateMarkdowns(lang, mdFiles)
-          await commitChanges(git, lang, translatedMDs)
+          return { lang, files: await translateMarkdowns(lang, mdFiles) }
         }),
       )
+      for (const { lang, files } of translatedMDs) {
+        await commitChanges(git, lang, files)
+      }
       await pushChanges(git)
     }
 
