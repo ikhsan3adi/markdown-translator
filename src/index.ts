@@ -70,9 +70,9 @@ async function setupGit() {
 
 async function commitChanges(git: SimpleGit, lang: string, files: string[]) {
   info('commit started')
-  await git.add(files)
   await git.commit(
     `docs: Added ${lang} translation via https://github.com/${process.env.GITHUB_ACTION_REPOSITORY}`,
+    files,
   )
   info('finished commit')
 }
