@@ -1,6 +1,7 @@
 # Markdown Translator Action
 
 ## README Translation
+
 - [English](README.md)
 - [简体中文](README.zh-CN.md)
 - [繁体中文](README.zh-TW.md)
@@ -46,10 +47,13 @@ jobs:
             very/deep/sub/directories/FOO.md
             /very/deep/sub/directories/BAR.md
 
-      - name: Adding README - Chinese Traditional
+      - name: Adding README translations
         uses: ikhsan3adi/markdown-translator@master
         with:
-          LANG: zh-TW
+          LANG: |- # multiple languages
+            zh-CN
+            zh-TW
+            ja
           FILES: |-
             README.md
             OTHER-README.md
@@ -66,7 +70,7 @@ jobs:
 
 You can configure the action further with the following options:
 
-- `LANG`: The language you want to translate your readme to. The default is Simplified Chinese. The supported languages can be found below.
+- `LANG`: Newline-separated list of the language you want to translate your readme to. The default is Simplified Chinese. The supported languages can be found below.
   (default: `zh-CN`) (required: `false`)
 
 - `FILES`: Newline-separated list of the markdown files you want to translate to. (default: `[README.md]`) (required: `false`)
