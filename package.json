@@ -6,8 +6,9 @@
   "type": "module",
   "scripts": {
     "build": "ncc build src/index.ts -o dist -s -m",
-    "build:commit": "npm run build && git add . && git commit",
-    "start": "npx tsx src/index.ts"
+    "build:commit": " npm run format && npm run build && git add . && git commit",
+    "start": "npx tsx src/index.ts",
+    "format": "npx prettier -w src"
   },
   "keywords": [
     "readme",

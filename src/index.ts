@@ -1,10 +1,10 @@
-import { getInput } from '@actions/core'
+import { getInput, info, setFailed } from '@actions/core'
 import translate from '@tomsun28/google-translate-api'
 import { readFileSync, writeFileSync } from 'fs'
 import { join } from 'path'
 import parse from 'remark-parse'
 import stringify from 'remark-stringify'
-import simpleGit from 'simple-git'
+import simpleGit, { SimpleGit } from 'simple-git'
 import unified from 'unified'
 import { Literal } from 'unist'
 import visit from 'unist-util-visit'
@@ -16,9 +16,12 @@ async function translateMarkdowns(lang: string, files: string[]) {
     const { mdAST, textNodes } = createTextNodes(file)
 
     await Promise.all(
-      textNodes.map(async (node) => await translate(node.value, { to: lang }).then(({ text }) => {
-        node.value = text
-      })),
+      textNodes.map(
+        async (node) =>
+          await translate(node.value, { to: lang }).then(({ text }) => {
+            node.value = text
+          }),
+      ),
     )
 
     const markdown = unified().use(stringify).stringify(mdAST)
@@ -47,38 +50,54 @@ function writeToFile(
   markdown: string | NodeJS.ArrayBufferView,
 ) {
   writeFileSync(join(mainDir, filename), markdown, 'utf8')
-  console.log(`${filename} written`)
+  info(`${filename} written`)
 }
 
-async function commitChanges(lang: string) {
+async function setupGit() {
   const git = simpleGit()
-  await git.pull()
-  console.log('commit started')
-  await git.add('./*')
   await git.addConfig('user.name', 'github-actions[bot]')
   await git.addConfig(
     'user.email',
     'github-actions[bot]@users.noreply.github.com',
   )
+  return git
+}
+
+async function commitChanges(git: SimpleGit, lang: string) {
+  info('commit started')
+  await git.add('./*')
   await git.commit(
     `docs: Added ${lang} markdown(s) translation via https://github.com/${process.env.GITHUB_ACTION_REPOSITORY}`,
   )
-  console.log('finished commit')
+  info('finished commit')
+}
+
+async function pushChanges(git: SimpleGit) {
+  await git.pull()
   await git.push()
-  console.log('pushed')
+  info('pushed')
 }
 
 async function main() {
   try {
-    const lang = getInput('LANG') || 'zh-CN'
+    const langs = getInput('LANG').split(/\r|\n/) ?? ['zh-CN']
     const mdFiles = getInput('FILES').split(/\r|\n/) ?? ['README.md']
 
-    await translateMarkdowns(lang, mdFiles)
-    await commitChanges(lang)
-    console.log('Done')
+    if (Array.isArray(langs)) {
+      const git = await setupGit()
+      await Promise.all(
+        langs.map(async (lang) => {
+          if (!lang) return
+          await translateMarkdowns(lang, mdFiles)
+          await commitChanges(git, lang)
+        }),
+      )
+      await pushChanges(git)
+    }
+
+    info('Done')
   } catch (error) {
-    console.error(error)
-    throw error
+    setFailed(error)
   }
 }
 
