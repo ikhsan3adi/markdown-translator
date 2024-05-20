@@ -47,10 +47,13 @@ jobs:
             very/deep/sub/directories/FOO.md
             /very/deep/sub/directories/BAR.md
 
-      - name: Adding README - Chinese Traditional
+      - name: Adding README translations
         uses: ikhsan3adi/markdown-translator@master
         with:
-          LANG: zh-TW
+          LANG: |- # multiple languages
+            zh-CN
+            zh-TW
+            ja
           FILES: |-
             README.md
             OTHER-README.md
@@ -67,7 +70,7 @@ jobs:
 
 Vous pouvez configurer davantage l'action avec les options suivantes :
 
--   `LANG`: La langue dans laquelle vous souhaitez traduire votre fichier Lisez-moi. La valeur par défaut est le chinois simplifié. Les langues prises en charge peuvent être trouvées ci-dessous.
+-   `LANG`: Liste séparée par des sauts de ligne de la langue dans laquelle vous souhaitez traduire votre fichier Lisez-moi. La valeur par défaut est le chinois simplifié. Les langues prises en charge peuvent être trouvées ci-dessous.
     (défaut:`zh-CN`) (requis:`false`)
 
 -   `FILES`: Liste séparée par des sauts de ligne des fichiers markdown vers lesquels vous souhaitez traduire. (défaut:`[README.md]`) (requis:`false`)
