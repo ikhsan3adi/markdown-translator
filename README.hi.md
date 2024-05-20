@@ -47,10 +47,13 @@ jobs:
             very/deep/sub/directories/FOO.md
             /very/deep/sub/directories/BAR.md
 
-      - name: Adding README - Chinese Traditional
+      - name: Adding README translations
         uses: ikhsan3adi/markdown-translator@master
         with:
-          LANG: zh-TW
+          LANG: |- # multiple languages
+            zh-CN
+            zh-TW
+            ja
           FILES: |-
             README.md
             OTHER-README.md
@@ -67,7 +70,7 @@ jobs:
 
 आप निम्नलिखित विकल्पों के साथ कार्रवाई को आगे कॉन्फ़िगर कर सकते हैं:
 
--   `LANG`: वह भाषा जिसमें आप अपने रीडमी का अनुवाद करना चाहते हैं। डिफ़ॉल्ट सरलीकृत चीनी है. समर्थित भाषाएँ नीचे पाई जा सकती हैं।
+-   `LANG`: जिस भाषा में आप अपने रीडमी का अनुवाद करना चाहते हैं उसकी न्यूलाइन-अलग की गई सूची। डिफ़ॉल्ट सरलीकृत चीनी है. समर्थित भाषाएँ नीचे पाई जा सकती हैं।
     (गलती करना:`zh-CN`) (आवश्यक:`false`)
 
 -   `FILES`: उन मार्कडाउन फ़ाइलों की नई-पृथक सूची जिनका आप अनुवाद करना चाहते हैं। (गलती करना:`[README.md]`) (आवश्यक:`false`)

@@ -47,10 +47,13 @@ jobs:
             very/deep/sub/directories/FOO.md
             /very/deep/sub/directories/BAR.md
 
-      - name: Adding README - Chinese Traditional
+      - name: Adding README translations
         uses: ikhsan3adi/markdown-translator@master
         with:
-          LANG: zh-TW
+          LANG: |- # multiple languages
+            zh-CN
+            zh-TW
+            ja
           FILES: |-
             README.md
             OTHER-README.md
@@ -67,7 +70,7 @@ jobs:
 
 Anda dapat mengonfigurasi tindakan lebih lanjut dengan opsi berikut:
 
--   `LANG`: Bahasa yang Anda inginkan untuk menerjemahkan readme Anda. Standarnya adalah Bahasa Cina Sederhana. Bahasa yang didukung dapat ditemukan di bawah.
+-   `LANG`: Daftar bahasa yang dipisahkan baris baru tempat Anda ingin menerjemahkan readme Anda. Standarnya adalah Bahasa Cina Sederhana. Bahasa yang didukung dapat ditemukan di bawah.
     (bawaan:`zh-CN`) (diperlukan:`false`)
 
 -   `FILES`: Daftar file penurunan harga yang dipisahkan baris baru yang ingin Anda terjemahkan. (bawaan:`[README.md]`) (diperlukan:`false`)

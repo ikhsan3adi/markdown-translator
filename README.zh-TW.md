@@ -47,10 +47,13 @@ jobs:
             very/deep/sub/directories/FOO.md
             /very/deep/sub/directories/BAR.md
 
-      - name: Adding README - Chinese Traditional
+      - name: Adding README translations
         uses: ikhsan3adi/markdown-translator@master
         with:
-          LANG: zh-TW
+          LANG: |- # multiple languages
+            zh-CN
+            zh-TW
+            ja
           FILES: |-
             README.md
             OTHER-README.md
@@ -67,7 +70,7 @@ jobs:
 
 您可以使用以下選項進一步配置操作：
 
--   `LANG`：您要將自述文件翻譯成的語言。預設為簡體中文。支援的語言可以在下面找到。
+-   `LANG`：以換行符號分隔的您要將自述文件翻譯成的語言清單。預設為簡體中文。可以在下面找到支援的語言。
     (預設:`zh-CN`） （必需的：`false`)
 
 -   `FILES`：要翻譯成的 Markdown 檔案的換行分隔清單。 (預設:`[README.md]`） （必需的：`false`)
