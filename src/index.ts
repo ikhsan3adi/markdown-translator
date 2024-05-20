@@ -12,6 +12,7 @@ import visit from 'unist-util-visit'
 const mainDir = '.'
 
 async function translateMarkdowns(lang: string, files: string[]) {
+  const newFilenames = []
   for (const file of files) {
     const { mdAST, textNodes } = createTextNodes(file)
 
@@ -27,9 +28,13 @@ async function translateMarkdowns(lang: string, files: string[]) {
     const markdown = unified().use(stringify).stringify(mdAST)
     const filename = file.split('.')
     filename.splice(filename.length - 1, 0, lang)
+    const newFilename = filename.join('.')
 
-    writeToFile(filename.join('.'), markdown)
+    writeToFile(newFilename, markdown)
+
+    newFilenames.push(newFilename)
   }
+  return newFilenames
 }
 
 function createTextNodes(filename: string) {
@@ -63,11 +68,11 @@ async function setupGit() {
   return git
 }
 
-async function commitChanges(git: SimpleGit, lang: string) {
+async function commitChanges(git: SimpleGit, lang: string, files: string[]) {
   info('commit started')
-  await git.add('./*')
+  await git.add(files)
   await git.commit(
-    `docs: Added ${lang} markdown(s) translation via https://github.com/${process.env.GITHUB_ACTION_REPOSITORY}`,
+    `docs: Added ${lang} translation via https://github.com/${process.env.GITHUB_ACTION_REPOSITORY}`,
   )
   info('finished commit')
 }
@@ -88,8 +93,8 @@ async function main() {
       await Promise.all(
         langs.map(async (lang) => {
           if (!lang) return
-          await translateMarkdowns(lang, mdFiles)
-          await commitChanges(git, lang)
+          const translatedMDs = await translateMarkdowns(lang, mdFiles)
+          await commitChanges(git, lang, translatedMDs)
         }),
       )
       await pushChanges(git)
